@@ -20,6 +20,7 @@ export default function MovieCard({
                 </View>
                 <Text style={styles.meta}>{year} • {formatDuration(durationMinutes)}</Text>
                 <Text style={styles.director}>{director}</Text>
+                <GenreTags genre={genre} />
             </View>
 
         </View>
