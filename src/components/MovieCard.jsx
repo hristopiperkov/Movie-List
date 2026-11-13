@@ -11,7 +11,7 @@ export default function MovieCard({
     posterUrl,
 }) {
     return (
-        <View>
+        <View style={styles.card}>
             <Image source={{ uri: posterUrl }} style={styles.poster} />
 
             <View style={styles.info}>
