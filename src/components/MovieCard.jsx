@@ -1,4 +1,6 @@
 import { Text, View, StyleSheet } from "react-native";
+import { colors } from "../styles/colors";
+import { formatDuration } from "../utils/formatDuration";
 
 export default function MovieCard({
     title,
@@ -16,7 +18,7 @@ export default function MovieCard({
                 <View style={styles.titleRow}>
                     <Text style={styles.title}>{title}</Text>
                 </View>
-                <Text style={styles.meta}>{year} • {durationMinutes}min</Text>
+                <Text style={styles.meta}>{year} • {formatDuration(durationMinutes)}</Text>
             </View>
 
         </View>
