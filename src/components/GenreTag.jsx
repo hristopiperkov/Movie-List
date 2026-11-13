@@ -1,29 +1,44 @@
-import { Text, View } from "react-native";
+import { StyleSheet, Text, View } from 'react-native';
 
-const styles = StyleSheet.create({
-    tag: {
-        backgroundColor: colors.accent,
-        borderRadius: 16,
-        paddingVertical: 4,
-        paddingHorizontal: 8,
-        marginRight: 8,
-    },
-    text: {
-        color: colors.textInverted,
-        fontSize: 12,
-        fontWeight: 'bold',
-    },
-});
+import { colors } from '../theme';
 
 export default function GenreTags({ genre }) {
-    
-    const genres = genre.split(',').map((g) => g.trim());
+  const genres = Array.isArray(genre)
+    ? genre
+    : typeof genre === 'string'
+      ? genre.split(',').map((item) => item.trim()).filter(Boolean)
+      : [];
 
-    return (
-        <View style={styles.row}>
-            {genres.map((g, index) => (
-                <View style={styles.tag} key={index}>
-                    <Text>{name}</Text>  
+  if (genres.length === 0) return null;
+
+  return (
+    <View style={styles.row}>
+      {genres.map((item) => (
+        <View key={item} style={styles.tag}>
+          <Text style={styles.text}>{item}</Text>
         </View>
-    );
+      ))}
+    </View>
+  );
 }
+
+const styles = StyleSheet.create({
+  row: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    marginTop: 8,
+    rowGap: 6,
+  },
+  tag: {
+    backgroundColor: colors.accent,
+    borderRadius: 16,
+    paddingVertical: 4,
+    paddingHorizontal: 8,
+    marginRight: 6,
+  },
+  text: {
+    color: colors.textInverted,
+    fontSize: 12,
+    fontWeight: '700',
+  },
+});
